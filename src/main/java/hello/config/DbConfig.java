@@ -9,11 +9,10 @@ import org.springframework.jdbc.support.JdbcTransactionManager;
 import org.springframework.transaction.TransactionManager;
 import javax.sql.DataSource;
 @Slf4j
-@Configuration
+//@Configuration //주석처리
 public class DbConfig {
     @Bean
     public DataSource dataSource() {
-        log.info("dataSource 빈 등록");
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setJdbcUrl("jdbc:h2:mem:test");
@@ -23,12 +22,10 @@ public class DbConfig {
     }
     @Bean
     public TransactionManager transactionManager() {
-        log.info("transactionManager 빈 등록");
         return new JdbcTransactionManager(dataSource());
     }
     @Bean
     public JdbcTemplate jdbcTemplate() {
-        log.info("jdbcTemplate 빈 등록");
         return new JdbcTemplate(dataSource());
     }
 }
